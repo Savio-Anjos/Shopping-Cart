@@ -9,6 +9,7 @@ import {
 } from "react-native";
 
 import { Feather } from "@expo/vector-icons";
+import Product from "../../Components/Product";
 
 export default function Home() {
   const [products, setProtucts] = useState([
@@ -50,6 +51,13 @@ export default function Home() {
           <Feather name="shopping-cart" size={30} color="#000" />
         </TouchableOpacity>
       </View>
+
+      <FlatList
+        style={styles.list}
+        data={products}
+        keyExtractor={(item) => String(item.id)}
+        renderItem={({ item }) => <Product data={item} />}
+      />
     </SafeAreaView>
   );
 }
