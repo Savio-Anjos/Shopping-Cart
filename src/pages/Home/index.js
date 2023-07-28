@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import {
   View,
   Text,
@@ -11,8 +11,10 @@ import {
 import { Feather } from "@expo/vector-icons";
 import Product from "../../Components/Product";
 import { useNavigation } from "@react-navigation/native";
+import { CardContext } from "./../../contexts/CardContext";
 
 export default function Home() {
+  const { cart } = useContext(CardContext);
   const navigation = useNavigation();
 
   const [products, setProtucts] = useState([
@@ -50,7 +52,7 @@ export default function Home() {
 
         <TouchableOpacity style={styles.cartButton}>
           <View style={styles.dot}>
-            <Text style={styles.dotText}>3</Text>
+            <Text style={styles.dotText}>{cart?.length}</Text>
           </View>
           <Feather
             name="shopping-cart"
