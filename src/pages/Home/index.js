@@ -10,8 +10,11 @@ import {
 
 import { Feather } from "@expo/vector-icons";
 import Product from "../../Components/Product";
+import { useNavigation } from "@react-navigation/native";
 
 export default function Home() {
+  const navigation = useNavigation();
+
   const [products, setProtucts] = useState([
     {
       id: "1",
@@ -39,6 +42,7 @@ export default function Home() {
       price: 6.0,
     },
   ]);
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.cartContent}>
@@ -48,7 +52,12 @@ export default function Home() {
           <View style={styles.dot}>
             <Text style={styles.dotText}>3</Text>
           </View>
-          <Feather name="shopping-cart" size={30} color="#000" />
+          <Feather
+            name="shopping-cart"
+            size={30}
+            color="#000"
+            onPress={() => navigation.navigate("Cart")}
+          />
         </TouchableOpacity>
       </View>
 
