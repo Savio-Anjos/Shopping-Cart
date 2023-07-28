@@ -11,13 +11,13 @@ import {
 import { Feather } from "@expo/vector-icons";
 import Product from "../../Components/Product";
 import { useNavigation } from "@react-navigation/native";
-import { CardContext } from "./../../contexts/CardContext";
+import { CartContext } from "./../../contexts/CardContext";
 
 export default function Home() {
-  const { cart } = useContext(CardContext);
-  const navigation = useNavigation();
+  const { cart, addItemCart } = useContext(CartContext);
 
-  const [products, setProtucts] = useState([
+  const navigation = useNavigation();
+  const [products, setProducts] = useState([
     {
       id: "1",
       name: "Coca cola",
@@ -45,21 +45,23 @@ export default function Home() {
     },
   ]);
 
+  function handleAddCart(item) {
+    addItemCart(item);
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.cartContent}>
         <Text style={styles.title}>Lista de produtos</Text>
 
-        <TouchableOpacity style={styles.cartButton}>
+        <TouchableOpacity
+          style={styles.cartButton}
+          onPress={() => navigation.navigate("Cart")}
+        >
           <View style={styles.dot}>
             <Text style={styles.dotText}>{cart?.length}</Text>
           </View>
-          <Feather
-            name="shopping-cart"
-            size={30}
-            color="#000"
-            onPress={() => navigation.navigate("Cart")}
-          />
+          <Feather name="shopping-cart" size={30} color="#000" />
         </TouchableOpacity>
       </View>
 
@@ -67,7 +69,9 @@ export default function Home() {
         style={styles.list}
         data={products}
         keyExtractor={(item) => String(item.id)}
-        renderItem={({ item }) => <Product data={item} />}
+        renderItem={({ item }) => (
+          <Product data={item} addToCart={() => handleAddCart(item)} />
+        )}
       />
     </SafeAreaView>
   );
