@@ -4,7 +4,8 @@
 
 <img src="https://img.shields.io/github/repo-size/Savio-Anjos/Shopping-Cart?color=1D4ED8">
 <img src="https://img.shields.io/github/languages/count/Savio-Anjos/Shopping-Cart?color=1D4ED8">
-<img src="https://img.shields.io/github/last-commit/Savio-Anjos/FShopping-Cartcolor=01D4ED8> 
+<img src="https://img.shields.io/github/last-commit/Savio-Anjos/Shopping-Cart?color=01D4ED8">
+
 </p>
 
 ## 🚀 Tecnologias
